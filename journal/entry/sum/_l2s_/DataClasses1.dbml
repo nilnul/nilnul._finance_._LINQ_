@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="my" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=my;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False" SettingsObjectName="nilnul._finance_._LINQ_.Properties.Settings" SettingsPropertyName="myConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="[nilnul.finance].Journal" Member="Journals">
+    <Type Name="Journal">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[when]" Member="when" AutoSync="Never" Type="System.DateTime" DbType="DateTime" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[_time]" Member="_time" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[_memo]" Member="_memo" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Journal_Entry" Member="Entries" ThisKey="id" OtherKey="journal" Type="Entry" />
+    </Type>
+  </Table>
+  <Table Name="[nilnul.finance.journal].Entry" Member="Entries">
+    <Type Name="Entry">
+      <Column Name="id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="journal" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="entity" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="quantity" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="currency" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="[_time]" Member="_time" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[_stamp]" Member="_stamp" Type="System.Data.Linq.Binary" DbType="rowversion" CanBeNull="true" IsVersion="true" />
+      <Column Name="[_note]" Member="_note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Journal_Entry" Member="Journal1" ThisKey="journal" OtherKey="id" Type="Journal" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="[nilnul.finance.journal.entry].Sum" Member="Sums">
+    <Type Name="Sum">
+      <Column Name="entity" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="currency" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="sum" Member="sum1" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="maxJournal" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[when]" Member="when" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
